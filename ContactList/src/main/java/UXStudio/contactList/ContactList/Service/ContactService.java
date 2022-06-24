@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import static java.lang.Long.valueOf;
+
 @Service
 @RequiredArgsConstructor
 public class ContactService {
@@ -21,7 +23,7 @@ public class ContactService {
         return repository.findAll();
     }
 
-    public Optional<Contact> getContactById(long id){
+    public Optional<Contact> getContactById(Integer id){
         return repository.findById(id);
     }
 
@@ -29,4 +31,7 @@ public class ContactService {
         repository.save(contact);
     }
 
+    public void deleteContactById(Integer id) {
+        repository.deleteById(id);
+    }
 }

@@ -6,12 +6,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static java.lang.Integer.parseInt;
 
 @Controller
 public class ContactController {
@@ -28,6 +27,12 @@ public class ContactController {
         
     }
 
+    @DeleteMapping("/delete-contact/{id}")
+    public String deleteContact(@PathVariable String id){
+        contactService.deleteContactById(parseInt(id));
+        return "Deleted Successfully";
+    }
+
     @PostMapping("/new-contact")
     @ResponseBody
     public HttpStatus addNewContact(@RequestBody Contact contact){
@@ -38,4 +43,6 @@ public class ContactController {
             return HttpStatus.CONFLICT;
         }
     }
+
+
 }

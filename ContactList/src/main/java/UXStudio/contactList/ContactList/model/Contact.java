@@ -8,7 +8,7 @@ public class Contact {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Integer id;
 
     @Column(name="name")
     private String name;
@@ -25,7 +25,7 @@ public class Contact {
     public Contact() {
     }
 
-    public Contact(long id, String name, String phoneNumber, String emailAddress, String imagePath) {
+    public Contact(Integer id, String name, String phoneNumber, String emailAddress, String imagePath) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -33,11 +33,11 @@ public class Contact {
         this.imagePath = imagePath;
     }
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
