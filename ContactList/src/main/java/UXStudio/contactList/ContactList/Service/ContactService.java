@@ -25,5 +25,8 @@ public class ContactService {
         return repository.findById(id);
     }
 
+    public void registerNewContact(Contact contact){
+        repository.save(contact);
+    }
 
 }
