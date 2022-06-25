@@ -40,7 +40,17 @@ public class ContactController {
             contactService.registerNewContact(contact);
             return HttpStatus.OK;
         } catch (Exception e) {
-            return HttpStatus.CONFLICT;
+            return HttpStatus.NOT_ACCEPTABLE;
+        }
+    }
+
+    @PutMapping("/contact-update/{id}")
+    public HttpStatus updateContact(@RequestBody Contact contact, @PathVariable String id){
+        try{
+            contactService.updateContact(contact, parseInt(id));
+            return HttpStatus.OK;
+        } catch (Exception e){
+            return HttpStatus.NOT_MODIFIED;
         }
     }
 

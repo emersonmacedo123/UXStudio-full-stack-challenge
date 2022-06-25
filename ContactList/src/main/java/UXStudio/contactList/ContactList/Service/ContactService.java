@@ -6,6 +6,7 @@ import UXStudio.contactList.ContactList.model.Contact;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.service.spi.InjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,5 +34,24 @@ public class ContactService {
 
     public void deleteContactById(Integer id) {
         repository.deleteById(id);
+    }
+
+    public void updateContact(Contact contact, int id) {
+            Optional<Contact> contactToBeUpdated = repository.findById(id);
+            if(contactToBeUpdated.isPresent()){
+                Contact contactToBeUpdatedObject = contactToBeUpdated.get();
+                contactToBeUpdatedObject.setName(contact.getName());
+                contactToBeUpdatedObject.setEmailAddress(contact.getEmailAddress());
+                contactToBeUpdatedObject.setPhoneNumber(contact.getPhoneNumber());
+                contactToBeUpdatedObject.setImagePath(contact.getImagePath());
+                repository.save(contactToBeUpdatedObject);
+            }
+
+        //    Account account = accountRepository.findOne(ACCOUNT_ID);
+//account.setName("Test Account");
+//accountRepository.save(account);
+
+//        if(contactToBeUpdated.isPresent()){
+//        repository.saveAndFlush(contact);
     }
 }
