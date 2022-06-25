@@ -28,9 +28,13 @@ public class ContactController {
     }
 
     @DeleteMapping("/delete-contact/{id}")
-    public String deleteContact(@PathVariable String id){
-        contactService.deleteContactById(parseInt(id));
-        return "Deleted Successfully";
+    public HttpStatus deleteContact(@PathVariable String id){
+        try {
+            contactService.deleteContactById(parseInt(id));
+            return HttpStatus.OK;
+        } catch (Exception e){
+            return HttpStatus.NOT_IMPLEMENTED;
+        }
     }
 
     @PostMapping("/new-contact")
