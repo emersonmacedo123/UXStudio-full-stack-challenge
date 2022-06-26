@@ -13,6 +13,7 @@ import java.util.List;
 import static java.lang.Integer.parseInt;
 
 @Controller
+@CrossOrigin(origins = "*")
 public class ContactController {
     public final ContactService contactService;
 
